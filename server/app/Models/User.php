@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -44,5 +45,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function uplate()
+    {
+        return $this->hasMany(Uplate::class, 'user_id');
+    }
+
+    public function putnici()
+    {
+        return $this->hasMany(Putnici::class, 'user_id');
     }
 }
