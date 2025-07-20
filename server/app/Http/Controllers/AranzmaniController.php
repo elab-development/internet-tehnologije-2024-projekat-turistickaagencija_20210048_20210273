@@ -25,7 +25,7 @@ class AranzmaniController extends ResponseController
 
     public function vratiAranzmanePoPutovanju(Request $request, $putovanjeId): \Illuminate\Http\JsonResponse
     {
-        $aranzmani = \App\Models\Aranzman::where('putovanje_id', $putovanjeId)->andWhere('datumOd', '>', now())->get();
+        $aranzmani = \App\Models\Aranzman::where('putovanje_id', $putovanjeId)->where('datumOd', '>', now())->get();
         return $this->usepsno(AranzmanResurs::collection($aranzmani), 'Uspešno vraćeni aranžmani za putovanje.');
     }
 
@@ -37,7 +37,7 @@ class AranzmaniController extends ResponseController
             'datumOd' => 'required|date',
             'datumDo' => 'required|date|after_or_equal:datumOd',
             'cena' => 'required|numeric|min:0',
-            'popust' => 'required|decimal|min:0|max:100',
+            'popust' => 'required|decimal:2,4|min:0|max:100',
             'kapacitet' => 'required|integer|min:1',
         ]);
 

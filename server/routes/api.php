@@ -14,7 +14,7 @@ Route::get('/putovanja', [\App\Http\Controllers\PutovanjeController::class,'inde
 Route::get('/aranzmani', [\App\Http\Controllers\AranzmaniController::class,'vratiAktivneAranzmane']);
 
 Route::get('/aranzmani/{putovanjeId}', [\App\Http\Controllers\AranzmaniController::class,'vratiAranzmanePoPutovanju']);
-Route::get('/plan-arazmana/{aranzmanId}', [\App\Http\Controllers\PlanAranzmanaController::class,'vratiPlanoveZaAranzman']);
+Route::get('/plan-aranzmana/{aranzmanId}', [\App\Http\Controllers\PlanAranzmanaController::class,'vratiPlanoveZaAranzman']);
 
 Route::resource('putnici', \App\Http\Controllers\PutnikController::class)->only([
     'index', 'show'

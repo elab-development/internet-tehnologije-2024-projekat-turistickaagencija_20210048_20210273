@@ -12,10 +12,10 @@ class PutnikController extends ResponseController
     {
         $putnici = \App\Models\Putnici::all();
 
-        return $this->usepsno(PunikResur::collection($putnici), 'Putnici su uspešno učitani.');
+        return $this->usepsno(PunikResurs::collection($putnici), 'Putnici su uspešno učitani.');
     }
 
-    public function find(Request $request, $id): \Illuminate\Http\JsonResponse
+    public function show(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $putnik = \App\Models\Putnici::find($id);
 
