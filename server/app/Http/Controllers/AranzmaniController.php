@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Validator;
 class AranzmaniController extends ResponseController
 {
 
-    public function __construct(private readonly KalkulatorCene $kalkulatorCene)
-    {
-    }
 
     public function vratiAktivneAranzmane(Request $request): \Illuminate\Http\JsonResponse
     {
