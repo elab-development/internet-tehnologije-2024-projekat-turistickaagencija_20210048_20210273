@@ -9,6 +9,7 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/login', [\App\Http\Controllers\LogovanjeController::class, 'logovanje']);
 Route::post('/register', [\App\Http\Controllers\LogovanjeController::class, 'registracija']);
+Route::post('/logout', [\App\Http\Controllers\LogovanjeController::class, 'logout']);
 
 Route::get('/putovanja', [\App\Http\Controllers\PutovanjeController::class,'index']);
 Route::get('/aranzmani', [\App\Http\Controllers\AranzmaniController::class,'vratiAktivneAranzmane']);
