@@ -22,7 +22,7 @@ class AranzmanSeeder extends Seeder
                 'popust' => 10,
                 'cena' => 1200.00,
                 'kapacitet' => 20,
-                'putovanja_id' => $putovanja->where('lokacija', 'Bali, Indonezija')->first()->id
+                'putovanje_id' => $putovanja->where('lokacija', 'Bali, Indonezija')->first()->id
             ],
             [
                 'nazivAranzmana' => 'Rim - Kultura i Istorija',
@@ -31,7 +31,7 @@ class AranzmanSeeder extends Seeder
                 'popust' => 15,
                 'cena' => 800.00,
                 'kapacitet' => 30,
-                'putovanja_id' => $putovanja->where('lokacija', 'Rim, Italija')->first()->id
+                'putovanje_id' => $putovanja->where('lokacija', 'Rim, Italija')->first()->id
             ],
             [
                 'nazivAranzmana' => 'Pariz - Grad Ljubavi',
@@ -40,7 +40,7 @@ class AranzmanSeeder extends Seeder
                 'popust' => 5,
                 'cena' => 900.00,
                 'kapacitet' => 25,
-                'putovanja_id' => $putovanja->where('lokacija', 'Pariz, Francuska')->first()->id
+                'putovanje_id' => $putovanja->where('lokacija', 'Pariz, Francuska')->first()->id
             ],
             [
                 'nazivAranzmana' => 'Skandinavija - Priroda i Avantura',
@@ -49,7 +49,7 @@ class AranzmanSeeder extends Seeder
                 'popust' => 20,
                 'cena' => 1500.00,
                 'kapacitet' => 15,
-                'putovanja_id' => $putovanja->where('lokacija', 'Skandinavija')->first()->id
+                'putovanje_id' => $putovanja->where('lokacija', 'Skandinavija')->first()->id
             ],
             [
                 'nazivAranzmana' => 'Amazonija - Istraživanje Džungle',
@@ -58,7 +58,7 @@ class AranzmanSeeder extends Seeder
                 'popust' => 25,
                 'cena' => 1800.00,
                 'kapacitet' => 10,
-                'putovanja_id' => $putovanja->where('lokacija', 'Amazon, Brazil')->first()->id
+                'putovanje_id' => $putovanja->where('lokacija', 'Amazon, Brazil')->first()->id
             ]
         ];
 

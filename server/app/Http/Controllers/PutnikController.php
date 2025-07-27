@@ -102,7 +102,7 @@ class PutnikController extends ResponseController
         $grupisaniPodaci = DB::table('putnici')
             ->join('aranzmani', 'putnici.aranzman_id', '=', 'aranzmani.id')
             ->select('nazivAranzmana', 'aranzmani.id', DB::raw('count(*) as broj_putnika'))
-            ->groupBy('aranzmani.id')
+            ->groupBy('aranzmani.id', 'aranzmani.nazivAranzmana')
             ->get();
 
         return $this->usepsno($grupisaniPodaci, 'Broj putnika po aranžmanu je uspešno grupisan.');
