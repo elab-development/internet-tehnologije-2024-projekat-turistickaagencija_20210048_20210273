@@ -11,7 +11,7 @@ const Footer = () => {
                     <Col md={6} className="text-center text-md-start">
                         <ul>
                             <li>
-                                <IoMailOutline /> travel-agency@gmail.com
+                                <IoMailOutline /> vivirlavida@gmail.com
                             </li>
                             <li>
                                 <IoPhonePortraitOutline/> 065 323 3233

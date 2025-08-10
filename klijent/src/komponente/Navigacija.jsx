@@ -17,9 +17,9 @@ const Navigacija = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link href="/">Pocetna</Nav.Link>
-                            <Nav.Link href="/o-nama">O nama</Nav.Link>
                             <Nav.Link href="/destinacije">Destinacije</Nav.Link>
                             <Nav.Link href="/aranzmani">Aranzmani</Nav.Link>
+                            <Nav.Link href="/o-nama">O nama</Nav.Link>
                             <Nav.Link href="/kontakt">Kontakt</Nav.Link>
 
                             {
@@ -42,7 +42,7 @@ const Navigacija = () => {
                             {
                                 !tokenUsera && (
                                     <>
-                                        <Nav.Link href="/register">Registracija</Nav.Link>
+                                        <Nav.Link className="register-link" href="/register">Registracija</Nav.Link>
                                         <Nav.Link className="login-link" href="/login">Login</Nav.Link>
 
                                     </>
