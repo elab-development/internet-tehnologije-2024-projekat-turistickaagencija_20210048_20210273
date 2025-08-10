@@ -14,13 +14,14 @@ import Admin from "./stranice/Admin";
 import Registracija from "./stranice/Registracija";
 import Login from "./stranice/Login";
 import {Container} from "react-bootstrap";
+import Footer from "./komponente/Footer";
 
 function App() {
   return (
     <>
         <BrowserRouter>
             <Navigacija />
-            <Container>
+            <Container className="main">
                 <Routes>
                     <Route path="/" element={<Pocetna />} />
                     <Route path="/o-nama" element={<ONama />} />
@@ -33,6 +34,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                 </Routes>
             </Container>
+            <Footer />
         </BrowserRouter>
 
     </>

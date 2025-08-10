@@ -13,3 +13,48 @@
     color: white !important;
     border-radius: 5px;
 }
+.main {
+    min-height: 80vh;
+}
+
+.footer {
+    background-color: rgba(248,249,250,1);
+    color: black;
+    padding: 20px;
+}
+
+.footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.footer ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+.social-icons ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    flex-direction: row;
+    vertical-align: center;
+}
+.social-icons a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.social-icons a {
+    font-size: 50px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color:#ea9414;
+}
