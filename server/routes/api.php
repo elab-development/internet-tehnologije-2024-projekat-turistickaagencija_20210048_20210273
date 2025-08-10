@@ -9,7 +9,6 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/login', [\App\Http\Controllers\LogovanjeController::class, 'logovanje']);
 Route::post('/register', [\App\Http\Controllers\LogovanjeController::class, 'registracija']);
-Route::post('/logout', [\App\Http\Controllers\LogovanjeController::class, 'logout']);
 
 Route::get('/putovanja', [\App\Http\Controllers\PutovanjeController::class,'index']);
 Route::get('/aranzmani', [\App\Http\Controllers\AranzmaniController::class,'vratiAktivneAranzmane']);
@@ -24,21 +23,42 @@ Route::resource('putnici', \App\Http\Controllers\PutnikController::class)->only(
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::post('/aranzmani', [\App\Http\Controllers\AranzmaniController::class,'noviAranzman']);
-    Route::delete('/aranzmani/{id}', [\App\Http\Controllers\AranzmaniController::class,'obrisiAranzman']);
-    Route::post('/putovanja', [\App\Http\Controllers\PutovanjeController::class,'unesiPutovanje']);
-    Route::delete('/putovanja/{id}', [\App\Http\Controllers\PutovanjeController::class,'obrisiPutovanje']);
+    Route::post('/aranzmani', [\App\Http\Controllers\AranzmaniController::class,'noviAranzman'])->middleware([
+        'role:admin,agent'
+    ]);;
+    Route::delete('/aranzmani/{id}', [\App\Http\Controllers\AranzmaniController::class,'obrisiAranzman'])->middleware([
+        'role:admin'
+    ]);;
+    Route::post('/putovanja', [\App\Http\Controllers\PutovanjeController::class,'unesiPutovanje'])->middleware([
+        'role:admin,agent'
+    ]);;
+    Route::delete('/putovanja/{id}', [\App\Http\Controllers\PutovanjeController::class,'obrisiPutovanje'])->middleware([
+        'role:admin'
+    ]);;
 
     Route::resource('putnici', \App\Http\Controllers\PutnikController::class)->only([
         'store', 'update', 'destroy'
-    ]);
+    ])->middleware([
+        'role:admin,agent,finansijski_admin'
+    ]);;
 
     Route::get('/grupisano', [\App\Http\Controllers\PutnikController::class,'grupisanoBrojPutnikaPoAranzmanu']);
-    Route::get('/aranzmani/{aranzmanId}/putnici', [\App\Http\Controllers\PutnikController::class,'putniciPoAranzmanu']);
+
+    Route::get('/aranzmani/{aranzmanId}/putnici', [\App\Http\Controllers\PutnikController::class,'putniciPoAranzmanu'])->middleware([
+        'role:admin,agent,finansijski_admin,vodja_puta'
+    ]);
     // Uplate
-    Route::get('/uplate', [\App\Http\Controllers\UplateController::class, 'uplate']);
-    Route::get('/paginacija', [\App\Http\Controllers\UplateController::class, 'paginacija']);
-    Route::get('/aranzmani/{aranzmanId}/uplate', [\App\Http\Controllers\UplateController::class, 'uplatePoAranzmanu']);
+    Route::get('/uplate', [\App\Http\Controllers\UplateController::class, 'uplate'])->middleware([
+        'role:admin,finansijski_admin'
+    ]);
+    Route::get('/paginacija', [\App\Http\Controllers\UplateController::class, 'paginacija'])->middleware([
+        'role:admin,finansijski_admin'
+    ]);
+
+    Route::get('/aranzmani/{aranzmanId}/uplate', [\App\Http\Controllers\UplateController::class, 'uplatePoAranzmanu'])->middleware([
+        'role:admin,finansijski_admin'
+    ]);
+
     Route::post('/uplate', [\App\Http\Controllers\UplateController::class, 'novaUplata']);
     Route::get('/users/{userId}/uplate', [\App\Http\Controllers\UplateController::class, 'uplateZaKorisnika']);
 });
