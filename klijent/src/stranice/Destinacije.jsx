@@ -12,10 +12,10 @@ const Destinacije = () => {
             if (res.data.uspesno === true) {
                 setDestinacije(res.data.podaci);
             } else {
-                console.error("Greška prilikom dohvaćanja destinacija:", res.statusText);
+                console.error("Greška prilikom nalaženja destinacija:", res.statusText);
             }
         }).catch(err => {
-            console.error("Došlo je do greške prilikom dohvaćanja destinacija:", err);
+            console.error("Došlo je do greške prilikom nalaženja destinacija:", err);
         })
     }, []);
 
