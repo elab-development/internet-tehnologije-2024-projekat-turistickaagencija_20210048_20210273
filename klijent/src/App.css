@@ -72,3 +72,17 @@
     display: block;
     margin:0 auto;
 }
+
+.header-naslov {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.naslov {
+    font-weight: bold;
+    color: #ea9414;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-style: oblique;
+
+}
