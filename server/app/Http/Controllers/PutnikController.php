@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Services\KalkulatorCene;
 use App\Http\Resources\PunikResurs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PutnikController extends ResponseController
 {
+    public function __construct(private readonly KalkulatorCene $kalkulatorCene){
+
+    }
     public function index(Request $request): \Illuminate\Http\JsonResponse
     {
         $putnici = \App\Models\Putnici::all();
@@ -31,18 +34,25 @@ class PutnikController extends ResponseController
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
             'user_id' => 'required|exists:users,id|numeric',
             'aranzman_id' => 'required|exists:aranzmani,id|numeric',
-            'ukupnaCenaAranzmana' => 'required|numeric|min:0',
         ]);
 
         if ($validator->fails()) {
             return $this->neuspesno('Validacija nije uspela.', $validator->errors());
         }
 
+        $aranzman = \App\Models\Aranzman::find($request->aranzman_id);
+
+        if (!$aranzman) {
+            return $this->neuspesno('Aranžman nije pronađen.');
+        }
+
+        $cena = $this->kalkulatorCene->izracunajCenu($aranzman->cena, $aranzman->popust);
+
         $putnik = \App\Models\Putnici::create([
             'user_id' => $request->user_id,
             'aranzman_id' => $request->aranzman_id,
             'datum' => now(),
-            'ukupnaCenaAranzmana' => $request->ukupnaCenaAranzmana,
+            'ukupnaCenaAranzmana' => $cena,
         ]);
 
         return $this->usepsno(new PunikResurs($putnik), 'Putnik je uspešno kreiran.');
@@ -106,5 +116,15 @@ class PutnikController extends ResponseController
             ->get();
 
         return $this->usepsno($grupisaniPodaci, 'Broj putnika po aranžmanu je uspešno grupisan.');
+    }
+    public function findByUser($userId): \Illuminate\Http\JsonResponse
+    {
+        $putnik = \App\Models\Putnici::where('user_id', $userId)->get();
+
+        if ($putnik->isEmpty()) {
+            return $this->neuspesno('Nema putnika za ovog korisnika.');
+        }
+
+        return $this->usepsno(PunikResurs::collection($putnik), 'Putnici za korisnika su uspešno učitani.');
     }
 }

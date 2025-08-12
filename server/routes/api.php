@@ -23,6 +23,8 @@ Route::resource('putnici', \App\Http\Controllers\PutnikController::class)->only(
 
 Route::middleware('auth:sanctum')->group(function () {
 
+    Route::get('/users/{userId}/putnici', [\App\Http\Controllers\PutnikController::class,'findByUser']);
+
     Route::post('/aranzmani', [\App\Http\Controllers\AranzmaniController::class,'noviAranzman'])->middleware([
         'role:admin,agent'
     ]);;
@@ -34,10 +36,12 @@ Route::middleware('auth:sanctum')->group(function () {
     ]);;
     Route::delete('/putovanja/{id}', [\App\Http\Controllers\PutovanjeController::class,'obrisiPutovanje'])->middleware([
         'role:admin'
-    ]);;
+    ]);
+
+    Route::post('/putnici', [\App\Http\Controllers\PutnikController::class, 'store']);
 
     Route::resource('putnici', \App\Http\Controllers\PutnikController::class)->only([
-        'store', 'update', 'destroy'
+        'update', 'destroy'
     ])->middleware([
         'role:admin,agent,finansijski_admin'
     ]);;
