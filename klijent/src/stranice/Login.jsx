@@ -41,15 +41,15 @@ const Login = () => {
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label column={"lg"}>Email address</Form.Label>
-                    <Form.Control name="email" onChange={handleInputChange} type="email" placeholder="Enter email" />
+                    <Form.Control name="email" onChange={handleInputChange} type="email" placeholder="email" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label column={"lg"}>Password</Form.Label>
-                    <Form.Control name="password" onChange={handleInputChange} type="password" placeholder="Password" />
+                    <Form.Control name="password" onChange={handleInputChange} type="password" placeholder="password" />
                 </Form.Group>
                 <Button onClick={login} className="btn dugme" type="submit">
-                    Submit
+                    Prijavi se
                 </Button>
             </Form>
         </>
