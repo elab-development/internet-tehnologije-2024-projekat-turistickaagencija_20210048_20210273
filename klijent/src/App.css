@@ -6,17 +6,18 @@
 }
 .navbar > .container{
   justify-content: flex-start;
-   max-width: 100%;
+  max-width: 100%;
   margin: 0;         
   padding-left: 20px;   
 }
+
 .login-link {
     display: block;
     text-align: center;
     background-color: #ea9414 !important;
     text-decoration: none;
     color: white !important;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 .main {
     min-height: 80vh;
@@ -86,7 +87,52 @@
     font-style: oblique;
 
 }
+.akordijan-body{
+    background-color: #ea9414;
+   
+    color: white !important;
+    
+}
+
+.akordijan {
+   border: 3px solid rgb(193, 222, 252); 
+    border-radius: 8px;
+    transition: border-color 0.3s ease; 
+}
+
+.header-naslov {
+    text-shadow: 2px 2px 4px rgba(122, 122, 122, 0.4);
+    
+}
+
+.mb-4{
+    padding: 50px;
+}
+.onama-tekst {
+    max-width: 300px;      
+    margin: 0 auto;         
+    text-align: center;     
+    white-space: pre-line;  
+    word-wrap: break-word;  
+    line-height: 1.5;       
+}
+.form-slika-red {
+  padding-top: 30px; 
+}
+.slika-kolona img {
+  border-radius: 20px; 
+  
+  
+}
+.slika-kolona {
+  display: flex;
+  align-items: flex-start;
+
+  padding-top: 30px; 
+}
+
 .dugme {
     background-color: #ea9414 !important;
-    color: white !important;
+    border-color: #ea9414 !important;
+    color: white !important;
 }

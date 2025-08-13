@@ -48,10 +48,10 @@ const Aranzmani = () => {
                 if (res.data.uspesno === true) {
                     setPutovanjaPutnika(res.data.podaci);
                 } else {
-                    console.error("Greška prilikom dohvaćanja putovanja putnika:", res.statusText);
+                    console.error("Greška prilikom nalaženja putovanja putnika:", res.statusText);
                 }
             }).catch(err => {
-                console.error("Došlo je do greške prilikom dohvaćanja putovanja putnika:", err);
+                console.error("Došlo je do greške prilikom nalaženja putovanja putnika:", err);
             });
         }
     }, []);
@@ -63,9 +63,9 @@ const Aranzmani = () => {
             <Row>
                 <Col md={9} className="mb-4">
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label column={"lg"}>Izaberite putovanje</Form.Label>
+                        <Form.Label column={"lg"}>Destinacije</Form.Label>
                         <Form.Select size="lg" onChange={(e) => setIzabranoPutovanje(e.target.value)} aria-label="Default select example">
-                            <option value="0"> Izaberite putovanje</option>
+                            <option  value="0" > Izaberite destinaciju</option>
                             {
                                 destinacije.map((destinacija) => (
                                     <option key={destinacija.id} value={destinacija.id}>
@@ -82,9 +82,6 @@ const Aranzmani = () => {
                                 <th>Naziv aranzmana</th>
                                 <th>Datum početka</th>
                                 <th>Datum završetka</th>
-                                <th>Cena</th>
-                                <th>Popust</th>
-                                <th>Kapacitet</th>
                                 <th>Akcije</th>
                             </tr>
                         </thead>
@@ -96,9 +93,7 @@ const Aranzmani = () => {
                                             <td>{aranzman.nazivAranzmana}</td>
                                             <td>{new Date(aranzman.datumOd).toLocaleDateString()}</td>
                                             <td>{new Date(aranzman.datumDo).toLocaleDateString()}</td>
-                                            <td>{aranzman.cena} &euro;</td>
-                                            <td>{aranzman.popust ? `${aranzman.popust}%` : 'Nema popusta'}</td>
-                                            <td>{aranzman.kapacitet}</td>
+                                           
                                             <td>
                                                 <button className="btn btn-info dugme" onClick={
                                                     () => {

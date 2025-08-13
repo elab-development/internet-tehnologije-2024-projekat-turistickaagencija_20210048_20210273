@@ -17,14 +17,14 @@ const ONama = () => {
         {
             id: 2,
             imePrezime: "Danica Đurđić",
-            tekst: "Strastvena sam prema fotografiji i volim da zabeležim lepotu svakodnevnog života. Zivot je lepsi na moru!",
+            tekst: "Strastvena sam prema fotografiji i volim da zabeležim lepotu svakodnevnog života. Želim da istražim svet!",
             slika: danica
         }
     ];
 
     return (
         <>
-            <HeaderNaslov naslov="Rekli su" podnaslov="o nama" />
+            <HeaderNaslov naslov="O nama" />
             <Row>
                 {
                     onama.map(osoba => (

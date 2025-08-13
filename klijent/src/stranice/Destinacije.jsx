@@ -21,11 +21,11 @@ const Destinacije = () => {
 
     return (
         <>
-            <HeaderNaslov naslov="Naše destinacije" podnaslov="Istražite naše popularne destinacije" />
+            <HeaderNaslov  naslov="Naše destinacije" podnaslov="Istražite naše popularne destinacije" />
             {
                 destinacije.length > 0 ? (
                     <>
-                        <Accordion defaultActiveKey="0">
+                        <Accordion defaultActiveKey="0" className="akordijan">
                             {
                                 destinacije.map((destinacija, index) => (
                                     <Accordion.Item eventKey={index.toString()} key={destinacija.id}>

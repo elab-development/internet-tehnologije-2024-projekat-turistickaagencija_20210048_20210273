@@ -20,7 +20,7 @@ const Registracija = () => {
             if (res.data.uspesno === true) {
                 setPoruka("Uspešna registracija! Sada se možete prijaviti.");
             } else {
-                setPoruka("Neuspešna registracija. Proverite email i lozinku.");
+                setPoruka("Neuspešna registracija. ");
             }
         }).catch(err => {
             setPoruka("Došlo je do greške prilikom registracije. Pokušajte ponovo kasnije.");

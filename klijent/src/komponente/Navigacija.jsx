@@ -43,7 +43,7 @@ const Navigacija = () => {
                                 !tokenUsera && (
                                     <>
                                         <Nav.Link className="register-link" href="/register">Registracija</Nav.Link>
-                                        <Nav.Link className="login-link" href="/login">Login</Nav.Link>
+                                        <Nav.Link className="login-link" href="/login">Prijava</Nav.Link>
 
                                     </>
                                 )
