@@ -16,6 +16,9 @@ Route::get('/aranzmani', [\App\Http\Controllers\AranzmaniController::class,'vrat
 Route::get('/aranzmani/{putovanjeId}', [\App\Http\Controllers\AranzmaniController::class,'vratiAranzmanePoPutovanju']);
 Route::get('/plan-aranzmana/{aranzmanId}', [\App\Http\Controllers\PlanAranzmanaController::class,'vratiPlanoveZaAranzman']);
 
+Route::get('/pretrazi-gradove', [\App\Http\Controllers\PutovanjeController::class,'pretraziPoDrzavi']);
+Route::get('/pretrazi-oblasti', [\App\Http\Controllers\PutovanjeController::class,'pretraziOblasiPoDrzavi']);
+
 Route::resource('putnici', \App\Http\Controllers\PutnikController::class)->only([
     'index', 'show'
 ]);
@@ -65,4 +68,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/uplate', [\App\Http\Controllers\UplateController::class, 'novaUplata']);
     Route::get('/users/{userId}/uplate', [\App\Http\Controllers\UplateController::class, 'uplateZaKorisnika']);
+
+    Route::delete('/uplate/{id}', [\App\Http\Controllers\UplateController::class, 'destroy'])->middleware([
+        'role:admin,finansijski_admin'
+    ]);
 });

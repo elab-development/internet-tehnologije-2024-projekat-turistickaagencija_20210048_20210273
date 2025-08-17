@@ -48,4 +48,63 @@ class PutovanjeController extends ResponseController
 
         return $this->usepsno([], 'Putovanje je uspešno obrisano.');
     }
+
+    public function pretraziPoDrzavi(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $countryCode = $request->input('countryCode');
+        $url = "https://country-state-city-search-rest-api.p.rapidapi.com/cities-by-countrycode?countrycode=" . $countryCode;
+
+        $headers = [
+            'X-RapidAPI-Host' => 'country-state-city-search-rest-api.p.rapidapi.com',
+            'X-RapidAPI-Key' => env('RAPIDAPI_KEY'),
+            'Content-Type' => 'application/json',
+        ];
+
+        //cache by country code for 1 hour
+        $cacheKey = 'cities_by_country_' . $countryCode;
+        $cachedResponse = \Illuminate\Support\Facades\Cache::get($cacheKey);
+
+        if ($cachedResponse !== null) {
+            return $this->usepsno($cachedResponse, 'Gradovi su uspešno preuzeti iz keša.');
+        }else {
+            $response = \Illuminate\Support\Facades\Http::withHeaders($headers)->get($url);
+
+            if ($response->successful()) {
+                $data = $response->json();
+                \Illuminate\Support\Facades\Cache::put($cacheKey, $data, 3600);
+                return $this->usepsno($data, 'Gradovi su uspešno preuzeti.');
+            } else {
+                return $this->neuspesno('Greška prilikom preuzimanja gradova: ' . $response->status());
+            }
+        }
+    }
+
+    public function pretraziOblasiPoDrzavi(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $countryCode = $request->input('countryCode');
+        $url = "https://country-state-city-search-rest-api.p.rapidapi.com/states-by-countrycode?countrycode=" . $countryCode;
+
+        $headers = [
+            'X-RapidAPI-Host' => 'country-state-city-search-rest-api.p.rapidapi.com',
+            'X-RapidAPI-Key' => env('RAPIDAPI_KEY'),
+            'Content-Type' => 'application/json',
+        ];
+
+        //cache by country code for 1 hour
+        $cacheKey = 'states_by_country_' . $countryCode;
+        $cachedResponse = \Illuminate\Support\Facades\Cache::get($cacheKey);
+        if ($cachedResponse !== null) {
+            return $this->usepsno($cachedResponse, 'Oblasti su uspešno preuzete iz keša.');
+        } else {
+            $response = \Illuminate\Support\Facades\Http::withHeaders($headers)->get($url);
+
+            if ($response->successful()) {
+                $data = $response->json();
+                \Illuminate\Support\Facades\Cache::put($cacheKey, $data, 3600);
+                return $this->usepsno($data, 'Oblasti su uspešno preuzete.');
+            } else {
+                return $this->neuspesno('Greška prilikom preuzimanja oblasti: ' . $response->status());
+            }
+        }
+    }
 }

@@ -78,4 +78,17 @@ class UplateController extends ResponseController
         $uplate = \App\Models\Uplate::where('user_id', $userId)->orderBy('datumUplate', 'desc')->get();
         return $this->usepsno(\App\Http\Resources\UplataResurs::collection($uplate), 'Uplate za korisnika su uspešno učitane.');
     }
+
+    public function destroy($id): \Illuminate\Http\JsonResponse
+    {
+        $uplata = \App\Models\Uplate::find($id);
+
+        if (!$uplata) {
+            return $this->neuspesno('Uplata sa datim ID-jem ne postoji.');
+        }
+
+        $uplata->delete();
+
+        return $this->usepsno(null, 'Uplata je uspešno obrisana.');
+    }
 }
